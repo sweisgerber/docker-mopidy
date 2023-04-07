@@ -2,7 +2,7 @@ FROM ghcr.io/linuxserver/baseimage-debian:bullseye
 # set version label
 ARG BUILD_DATE
 ARG VERSION
-ARG MOPIDY_RELEASE
+
 LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="sweisgerber-dev"
 
