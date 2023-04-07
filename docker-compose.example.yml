@@ -1,12 +1,17 @@
 version: "3"
 services:
   mopidy:
-    image: sweisgerber-dev/mopidy
+    image: mopidy:latest
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Berlin
-      - PIP_PACKAGES=Mopidy-YTMusic Mopidy-Tidal Mopidy-SoundCloud
+      #
+      # https://github.com/linuxserver/docker-mods/tree/universal-package-install
+      #
+      - DOCKER_MODS=linuxserver/mods:universal-package-install
+      - INSTALL_PIP_PACKAGES=Mopidy-YTMusic
+      # - INSTALL_PACKAGES=mopidy-podcast
     restart: "unless-stopped"
     ports:
       - 6666:6600
