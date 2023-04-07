@@ -6,6 +6,12 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Berlin
+      #
+      # https://github.com/linuxserver/docker-mods/tree/universal-package-install
+      #
+      - DOCKER_MODS=linuxserver/mods:universal-package-install
+      - INSTALL_PIP_PACKAGES=Mopidy-YTMusic
+      # - INSTALL_PACKAGES=mopidy-podcast
     restart: "unless-stopped"
     ports:
       - 6666:6600

@@ -13,24 +13,23 @@ ARG DEBIAN_FRONTEND="noninteractive"
 #
 RUN set -ex \
  && apt-get update \
- && apt-get install -y debian-archive-keyring \
- && apt-get install -y apt-transport-https \
  && apt-get install -y \
-        curl \
-        gnupg \
- && apt-get install -y \
-        gstreamer1.0-alsa \
-        gstreamer1.0-plugins-bad \
-        python3 \
-        python3-pip \
+      debian-archive-keyring \
+      apt-transport-https \
+      curl \
+      gnupg \
+      gstreamer1.0-alsa \
+      gstreamer1.0-plugins-bad \
+      python3 \
+      python3-pip \
  && mkdir -p /etc/apt/keyrings/ \
  && curl -L https://apt.mopidy.com/mopidy.gpg -o /etc/apt/keyrings/mopidy-archive-keyring.gpg \
  && curl -L https://apt.mopidy.com/mopidy.list -o /etc/apt/sources.list.d/mopidy.list \
  && apt-get update \
  && apt-get install -y \
-        mopidy \
-        mopidy-mpd \
-        mopidy-spotify \
+      mopidy \
+      mopidy-mpd \
+      mopidy-spotify \
  && pip install --no-cache-dir --upgrade pip wheel \
  && pip install --no-cache-dir --upgrade \
       Mopidy-Bandcamp \
