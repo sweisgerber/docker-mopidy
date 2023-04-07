@@ -1,0 +1,17 @@
+version: "3"
+services:
+  mopidy:
+    image: sweisgerber-dev/mopidy
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+      - PIP_PACKAGES=Mopidy-YTMusic Mopidy-Tidal Mopidy-SoundCloud
+    restart: "unless-stopped"
+    ports:
+      - 6666:6600
+      - 6680:6680
+    volumes:
+      - /srv/mopidy-linuxserver/config/:/config/
+      - /srv/mopidy-linuxserver/data/:/data/
+      # /music/:/music/
