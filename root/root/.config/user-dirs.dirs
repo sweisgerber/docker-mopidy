@@ -1,0 +1,4 @@
+XDG_CACHE_DIR="/data/cache"
+XDG_CONFIG_DIR="/config"
+XDG_DATA_DIR="/data/data"
+XDG_MUSIC_DIR="/music"
