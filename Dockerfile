@@ -39,10 +39,22 @@ RUN set -ex \
  && apt-get install -y \
         mopidy
 RUN set -ex \
-     pip install --no-cache-dir \
-     Mopidy-Autoplay \
-     Mopidy-Iris \
-     Mopidy-Local \
-     Mopidy-MPD \
-     Mopidy-SomaFM \
-     Mopidy-Spotify
+    pip install --no-cache-dir --upgrade pip wheel
+RUN set -ex \
+    pip install --no-cache-dir --upgrade \
+      Mopidy-Autoplay \
+      Mopidy-Iris \
+      Mopidy-Local \
+      Mopidy-MPD \
+      Mopidy-SomaFM \
+      Mopidy-Spotify
+
+COPY root/ /
+
+# ports and volumes
+# mopidy-http default port
+EXPOSE 6680
+# mpd plugin default port
+EXPOSE 6600
+
+VOLUME /config /music

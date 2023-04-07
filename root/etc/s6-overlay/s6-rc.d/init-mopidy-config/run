@@ -1,0 +1,15 @@
+#!/usr/bin/with-contenv bash
+
+# create directories
+mkdir -p \
+    /config/{log,conf.d} \
+    /data/{cache,data,playlists} \
+    /music
+
+# copy config unless it exists
+cp -n /defaults/mopidy.conf /config/mopidy.conf
+
+# permissions
+lsiown -R abc:abc \
+    /config \
+    /data
