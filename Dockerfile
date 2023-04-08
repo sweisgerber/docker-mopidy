@@ -19,6 +19,7 @@ RUN set -ex \
       curl \
       gnupg \
       alsa-utils \
+      sudo \
       gstreamer1.0-alsa \
       gstreamer1.0-plugins-good \
       gstreamer1.0-plugins-bad \
@@ -50,6 +51,7 @@ RUN set -ex \
 #
 # copy defaults & s6-overlay stuff
 COPY root/ /
+
 # ports ###########################################################################################
 # mopidy-http default port
 EXPOSE 6680
