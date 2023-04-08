@@ -3,7 +3,7 @@
 # create directories
 mkdir -p \
     /config/{log,conf.d,podcast} \
-    /data/{cache,data,playlists} \
+    /data/{cache,mopidy,playlists} \
     /music
 
 # copy config unless it exists
