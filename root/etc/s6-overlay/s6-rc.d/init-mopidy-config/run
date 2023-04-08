@@ -11,5 +11,6 @@ cp -n /defaults/mopidy.conf /config/mopidy.conf
 
 # permissions
 lsiown -R abc:abc \
+    /root/.cache/dconf \
     /config \
     /data
