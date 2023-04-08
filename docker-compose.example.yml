@@ -1,7 +1,8 @@
 version: "3"
 services:
   mopidy:
-    image: mopidy:latest
+    image: docker.io/sweisgerber/mopidy:latest
+    hostname: mopidy
     environment:
       - PUID=1000
       - PGID=1000
@@ -9,14 +10,38 @@ services:
       #
       # https://github.com/linuxserver/docker-mods/tree/universal-package-install
       #
-      - DOCKER_MODS=linuxserver/mods:universal-package-install
-      - INSTALL_PIP_PACKAGES=Mopidy-YTMusic
+      # Set debian or pip package ENV vars for further mopidy extensions
+      #
+      # - DOCKER_MODS=linuxserver/mods:universal-package-install
+      # - INSTALL_PIP_PACKAGES=Mopidy-YTMusic
       # - INSTALL_PACKAGES=mopidy-podcast
     restart: "unless-stopped"
     ports:
       - 6666:6600
       - 6680:6680
+    # devices:
+    # - /dev/snd:/dev/snd # optional you can also forward sound devices from host
     volumes:
-      - /srv/mopidy-linuxserver/config/:/config/
-      - /srv/mopidy-linuxserver/data/:/data/
-      # /music/:/music/
+      - /<path>/<to>/<moidy>/config/:/config/
+      - /<path>/<to>/<moidy>/data/:/data/
+      - /music/:/music/:ro
+# One should use snapcast along mopidy/iris
+  snapcast:
+    image: docker.io/sweisgerber/snapserver:latest
+    hostname: snapcast
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+    restart: "unless-stopped"
+    ports:
+      - 1704:1704
+      - 1705:1705
+      - 1780:1780
+    # devices:
+      # - /dev/snd:/dev/snd # optional
+    volumes:
+      - /<path>/<to>/<snapserver>/config/:/config/
+      - /<path>/<to>/<snapserver>/data/:/data/
+      # mopidy configured FIFO location, check mopidy.conf
+      - /<path>/<to>/<MOPIDY>/data/audio/:/audio/
