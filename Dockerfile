@@ -1,4 +1,5 @@
 FROM ghcr.io/linuxserver/baseimage-debian:bullseye
+
 # set version label
 ARG BUILD_DATE
 ARG VERSION
@@ -12,12 +13,9 @@ ARG DEBIAN_FRONTEND="noninteractive"
 # Official Mopidy install for Debian/Ubuntu along with some extensions #################################################
 #
 RUN set -ex \
+ echo "**** install runtime packages ****" \
  && apt-get update \
  && apt-get install -y \
-      debian-archive-keyring \
-      apt-transport-https \
-      curl \
-      gnupg \
       alsa-utils \
       sudo \
       gstreamer1.0-alsa \
@@ -44,7 +42,16 @@ RUN set -ex \
       Mopidy-Podcast \
       Mopidy-Scrobbler \
       Mopidy-SomaFM \
-      Mopidy-Subidy
+      Mopidy-Subidy \
+  && echo "**** cleanup ****" \
+  && apt-get -y autoremove \
+  && apt-get clean  \
+  && rm -rf \
+    /tmp/* \
+    /var/lib/apt/lists/* \
+    /var/tmp/* \
+    /var/log/* \
+    /usr/share/man
 # ^ Official Mopidy install for Debian/Ubuntu along with some extensions ^
 #   (see https://docs.mopidy.com/en/latest/installation/debian/)
 #
