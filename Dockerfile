@@ -20,9 +20,7 @@ RUN set -ex \
       sudo \
       gstreamer1.0-alsa \
       gstreamer1.0-plugins-good \
-      gstreamer1.0-plugins-bad \
       gstreamer1.0-plugins-ugly \
-      gstreamer1.0-libav \
       python3 \
       python3-pip \
  && mkdir -p /etc/apt/keyrings/ \
