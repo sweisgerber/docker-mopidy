@@ -1,4 +1,4 @@
-FROM ghcr.io/linuxserver/baseimage-debian:bullseye
+FROM ghcr.io/linuxserver/baseimage-alpine:edge
 
 # set version label
 ARG BUILD_DATE
@@ -6,53 +6,38 @@ ARG VERSION
 
 LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="sweisgerber-dev"
-
-# environment settings
-ARG DEBIAN_FRONTEND="noninteractive"
 #
-# Official Mopidy install for Debian/Ubuntu along with some extensions #################################################
+# Alpine Mopidy install along with some extensions #################################################
 #
 RUN set -ex \
- echo "**** install runtime packages ****" \
- && apt-get update \
- && apt-get install -y \
-      alsa-utils \
-      sudo \
-      gstreamer1.0-alsa \
-      gstreamer1.0-plugins-good \
-      gstreamer1.0-plugins-ugly \
-      python3 \
-      python3-pip \
- && mkdir -p /etc/apt/keyrings/ \
- && curl -L https://apt.mopidy.com/mopidy.gpg -o /etc/apt/keyrings/mopidy-archive-keyring.gpg \
- && curl -L https://apt.mopidy.com/mopidy.list -o /etc/apt/sources.list.d/mopidy.list \
- && apt-get update \
- && apt-get install -y \
-      mopidy \
-      mopidy-mpd \
-      mopidy-spotify \
+  echo "**** setup apk testing mirror ****" \
+  && echo "@testing http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
+  && cat /etc/apk/repositories \
+  && echo "**** install runtime packages ****" \
+  && apk add --no-cache -U --upgrade \
+    alsa-utils \
+    sudo \
+    gst-plugins-good \
+    gst-plugins-ugly \
+    python3 \
+    py3-pip \
+    mopidy \
+    py3-mopidy-local@testing \
+    py3-mopidy-mpd@testing \
+    py3-mopidy-spotify@testing \
  && pip install --no-cache-dir --upgrade pip wheel \
+ && echo "**** install mopidy extensions ****" \
  && pip install --no-cache-dir --upgrade \
       Mopidy-Bandcamp \
       Mopidy-Iris \
       Mopidy-Jellyfin \
-      Mopidy-Local \
       Mopidy-Podcast \
       Mopidy-Scrobbler \
       Mopidy-SomaFM \
       Mopidy-Subidy \
   && echo "**** cleanup ****" \
-  && apt-get -y autoremove \
-  && apt-get clean  \
   && rm -rf \
-    /tmp/* \
-    /var/lib/apt/lists/* \
-    /var/tmp/* \
-    /var/log/* \
-    /usr/share/man
-# ^ Official Mopidy install for Debian/Ubuntu along with some extensions ^
-#   (see https://docs.mopidy.com/en/latest/installation/debian/)
-#
+    /tmp/*
 # copy defaults & s6-overlay stuff
 COPY root/ /
 
