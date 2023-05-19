@@ -1,5 +1,7 @@
 # Mopidy (Docker Image)
 
+Mopidy AudioPlayer, ready for use in conjunction with snapcast.
+
 > Based on [linuxserver/docker-baseimage-alpine](https://github.com/linuxserver/docker-baseimage-alpine) & [mopidy/*](https://github.com/mopidy), as well as the [Iris Mopidy Client](https://github.com/jaedb/Iris).
 >  Also available at [DockerHub](https://hub.docker.com/r/sweisgerber/mopidy
 
@@ -7,11 +9,21 @@ Should get used in conjunction with snapcast, as shown in https://github.com/swe
 
 ## Features Include:
 
+- Mopidy plugins
+    - Mopidy-Bandcamp
+    - Mopidy-Iris
+    - Mopidy-Jellyfin
+    - Mopidy-Podcast
+    - Mopidy-Scrobbler
+    - Mopidy-SomaFM
+    - Mopidy-Subidy
 - [Iris Mopidy Client](https://github.com/jaedb/Iris) which a
     - Iris can function as snapclient stream & manage snapserver
 - FIFO usage to stream the audio from mopidy to snapcast
-- Uses s6-overlay from base image
-- small footprint
+- Based on [linuxserver/docker-baseimage-alpine](https://github.com/linuxserver/docker-baseimage-alpine)
+    - ... which allows use of [linuxserver/docker-mods](https://github.com/linuxserver/docker-mods/tree/universal-package-install) to add more pip & OS packages
+    - Uses s6-overlay from base image
+    - small footprint
 
 ## docker-compose
 
