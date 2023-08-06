@@ -25,9 +25,9 @@ RUN set -ex \
     py3-mopidy-local@testing \
     py3-mopidy-mpd@testing \
     py3-mopidy-spotify@testing \
- && pip install --no-cache-dir --upgrade pip wheel \
+ && pip install --no-cache-dir --break-system-packages --upgrade pip wheel \
  && echo "**** install mopidy extensions ****" \
- && pip install --no-cache-dir --upgrade \
+ && pip install --no-cache-dir --break-system-packages --upgrade \
       Mopidy-Bandcamp \
       Mopidy-Iris \
       Mopidy-Jellyfin \
