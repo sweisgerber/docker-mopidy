@@ -7,7 +7,7 @@ Should get used in conjunction with snapcast, as shown in https://github.com/swe
 
 ## Features Include:
 
-- [Iris Mopidy Client](https://github.com/jaedb/Iris) which a
+- [Iris Mopidy Client](https://github.com/jaedb/Iris)
     - Iris can function as snapclient stream & manage snapserver
 - FIFO usage to stream the audio from mopidy to snapcast
 - Uses s6-overlay from base image
