@@ -1,6 +1,8 @@
-name: ci
+name: Build & Push Docker Iamge
 
 on:
+  schedule:
+    - cron: "0 3 * * *"
   push:
     branches:
       - main
