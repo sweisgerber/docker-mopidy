@@ -26,7 +26,7 @@ Should get used in conjunction with snapcast, as shown in https://github.com/swe
 ## docker-compose
 
 I strongly advice to use docker-compose, as using a docker commandline is quite annoying with a complex setup.
-An example can get found [in the repository](./docker-compose.example.yml).
+An example can get found [in the repository](./docker-compose.example.yml) which is mostly pre-configured, besides a few vars.
 
 ```yaml
 version: "3"
