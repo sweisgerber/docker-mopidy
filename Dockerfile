@@ -17,22 +17,24 @@ RUN set -ex \
   && echo "**** install runtime packages ****" \
   && apk add --no-cache -U --upgrade \
     alsa-utils \
-    sudo \
     gst-plugins-good \
     gst-plugins-ugly \
-    python3 \
-    py3-pip \
-    py3-gobject3 \
     mopidy=~${MOPIDY_RELEASE} \
+    py3-gobject3 \
+    py3-mopidy-jellyfin@testing \
     py3-mopidy-local@testing \
     py3-mopidy-mpd@testing \
     py3-mopidy-spotify@testing \
+    py3-mopidy-tidal@testing \
+    py3-mopidy-youtube \
+    py3-pip \
+    python3 \
+    sudo \
  && pip install --no-cache-dir --break-system-packages --upgrade pip wheel \
  && echo "**** install mopidy extensions ****" \
  && pip install --no-cache-dir --break-system-packages --upgrade \
       Mopidy-Bandcamp \
       Mopidy-Iris \
-      Mopidy-Jellyfin \
       Mopidy-Podcast \
       Mopidy-Scrobbler \
       Mopidy-SomaFM \
