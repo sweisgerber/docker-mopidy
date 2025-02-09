@@ -5,6 +5,11 @@
 
 Should get used in conjunction with snapcast, as shown in https://github.com/sweisgerber/mopiroom.
 
+> [!NOTE]  
+> The Mopidy version is now available as docker image tag: e.g. `v3.4`.
+> If you want to use the version based on the git tag use `tag-<TAG>` 
+
+
 ## Features Include:
 
 - Mopidy plugins
