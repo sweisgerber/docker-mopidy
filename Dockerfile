@@ -3,15 +3,16 @@ FROM ghcr.io/linuxserver/baseimage-alpine:edge
 # set version label
 ARG BUILD_DATE
 ARG VERSION
+ARG MOPIDY_RELEASE
 
-LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
+LABEL build_version="version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="sweisgerber"
 #
 # Alpine Mopidy install along with some extensions #################################################
 #
 RUN set -ex \
   echo "**** setup apk testing mirror ****" \
-  && echo "@testing http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
+  && echo "@testing https://nl.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories \
   && cat /etc/apk/repositories \
   && echo "**** install runtime packages ****" \
   && apk add --no-cache -U --upgrade \
@@ -21,7 +22,7 @@ RUN set -ex \
     gst-plugins-ugly \
     python3 \
     py3-pip \
-    mopidy \
+    mopidy=~${MOPIDY_RELEASE} \
     py3-mopidy-local@testing \
     py3-mopidy-mpd@testing \
     py3-mopidy-spotify@testing \

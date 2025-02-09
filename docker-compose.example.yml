@@ -1,7 +1,7 @@
 version: "3"
 services:
   mopidy:
-    image: docker.io/sweisgerber/mopidy:alpine
+    image: docker.io/sweisgerber/mopidy:v3.4
     hostname: mopidy
     environment:
       - PUID=1000 # user ID which the mopidy service will run as, needs permissions to access the music
