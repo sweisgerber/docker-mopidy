@@ -22,6 +22,7 @@ RUN set -ex \
     gst-plugins-ugly \
     python3 \
     py3-pip \
+    py3-gobject3 \
     mopidy=~${MOPIDY_RELEASE} \
     py3-mopidy-local@testing \
     py3-mopidy-mpd@testing \
