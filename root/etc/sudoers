@@ -1,2 +1,4 @@
-abc  ALL=NOPASSWD:   /usr/local/lib/python3.9/dist-packages/mopidy_iris/system.sh
 abc  ALL=NOPASSWD:   /usr/lib/python3.11/site-packages/mopidy_iris/system.sh
+abc  ALL=NOPASSWD:   /usr/lib/python3.12/site-packages/mopidy_iris/system.sh
+abc  ALL=NOPASSWD:   /usr/lib/python3.13/site-packages/mopidy_iris/system.sh
+abc  ALL=NOPASSWD:   /usr/lib/python3.14/site-packages/mopidy_iris/system.sh
