@@ -48,7 +48,7 @@ jobs:
             type=raw,value=latest,enable={{is_default_branch}}
             type=schedule
             type=raw,value=latest,enable={{is_default_branch}}
-            type=raw,value=v${{ env.MOPIDY_VERSON }},enable={{is_default_branch}}
+            type=raw,value=v${{ env.MOPIDY_VERSION }},enable={{is_default_branch}}
             type=semver,pattern={{raw}},prefix=tag-
             # type=ref,event=branch
             # type=ref,event=tag
@@ -63,5 +63,5 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
-            MOPIDY_RELEASE=${{ env.MOPIDY_VERSON }}
-            VERSION=mopidy-${{ env.MOPIDY_VERSON }}
+            MOPIDY_RELEASE=${{ env.MOPIDY_VERSION }}
+            VERSION=mopidy-${{ env.MOPIDY_VERSION }}
