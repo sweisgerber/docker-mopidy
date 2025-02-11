@@ -13,13 +13,20 @@ Should get used in conjunction with snapcast, as shown in https://github.com/swe
 ## Features Include:
 
 - Mopidy plugins
-    - Mopidy-Bandcamp
-    - Mopidy-Iris
-    - Mopidy-Jellyfin
-    - Mopidy-Podcast
-    - Mopidy-Scrobbler
-    - Mopidy-SomaFM
-    - Mopidy-Subidy
+  - Mopidy-Bandcamp
+  - Mopidy-Beets
+  - Mopidy-InternetArchive
+  - Mopidy-Iris
+  - Mopidy-Jellyfin
+  - Mopidy-Local
+  - Mopidy-MPD
+  - Mopidy-Podcast
+  - Mopidy-Scrobbler
+  - Mopidy-SomaFM
+  - Mopidy-Subidy
+  - Mopidy-Tidal
+  - Mopidy-TuneIn
+  - Mopidy-YTMusic
 - [Iris Mopidy Client](https://github.com/jaedb/Iris)
     - Iris can function as snapclient stream & manage snapserver
 - FIFO usage to stream the audio from mopidy to snapcast

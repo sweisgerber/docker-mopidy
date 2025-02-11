@@ -2,4 +2,4 @@
 
 exec \
     s6-notifyoncheck -d -n 300 -w 1000 -c "nc -z localhost 6680" \
-    s6-setuidgid abc /usr/bin/mopidy --config /config/conf.d:/config/mopidy.conf
+    s6-setuidgid abc /lsiopy/bin/mopidy --config /config/conf.d:/config/mopidy.conf

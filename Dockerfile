@@ -17,28 +17,50 @@ RUN set -ex \
   && echo "**** install runtime packages ****" \
   && apk add --no-cache -U --upgrade \
     alsa-utils \
+    build-base \
+    cairo \
+    cairo-dev \
+    dbus \
+    dbus-dev \
+    gobject-introspection \
+    gobject-introspection-dev \
+    gstreamer \
+    gstreamer-dev \
+    gst-plugins-base \
     gst-plugins-good \
     gst-plugins-ugly \
-    mopidy=~${MOPIDY_RELEASE} \
-    py3-gobject3 \
-    py3-mopidy-jellyfin@testing \
-    py3-mopidy-local@testing \
-    py3-mopidy-mpd@testing \
-    py3-mopidy-spotify@testing \
-    py3-mopidy-tidal@testing \
-    py3-mopidy-youtube \
-    py3-pip \
+    libxml2 \
     python3 \
-    sudo \
- && pip install --no-cache-dir --break-system-packages --upgrade pip wheel \
+    python3-dev \
+    py3-pip \
+    py3-virtualenv \
+    sudo
+RUN python3 -m venv /lsiopy \
+ && pip install -U --no-cache-dir pip wheel setuptools \
  && echo "**** install mopidy extensions ****" \
- && pip install --no-cache-dir --break-system-packages --upgrade \
-      Mopidy-Bandcamp \
-      Mopidy-Iris \
-      Mopidy-Podcast \
-      Mopidy-Scrobbler \
-      Mopidy-SomaFM \
-      Mopidy-Subidy \
+ && pip install --no-cache-dir --upgrade \
+    Mopidy-Bandcamp \
+    Mopidy-Beets \
+    Mopidy-InternetArchive \
+    Mopidy-Iris \
+    Mopidy-Jellyfin \
+    Mopidy-Local \
+    Mopidy-MPD \
+    Mopidy-Podcast \
+    Mopidy-Scrobbler \
+    Mopidy-SomaFM \
+    Mopidy-Subidy \
+    Mopidy-Tidal \
+    Mopidy-TuneIn \
+    Mopidy-YTMusic \
+    Mopidy==${MOPIDY_RELEASE} \
+    PyGObject \
+    dbus-python \
+    pip \
+    pycairo \
+    pykka \
+    requests \
+    tornado \
   && echo "**** cleanup ****" \
   && rm -rf \
     /tmp/*
