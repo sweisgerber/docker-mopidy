@@ -9,7 +9,7 @@ on:
 env:
   IMAGE_NAME: mopidy
   NAMESPACE: sweisgerber
-  MOPIDY_VERSION: 3.4
+  MOPIDY_VERSION: 3.4.1
 jobs:
   docker:
     runs-on: ubuntu-latest
