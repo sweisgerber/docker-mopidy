@@ -36,24 +36,27 @@ RUN --mount=type=cache,target=/var/cache/apk \
     py3-virtualenv \
     sudo \
     git
+
+ARG UPDATE=false
+
 RUN --mount=type=cache,target=/root/.cache/pip \
   python3 -m venv /lsiopy \
  && pip install -U --no-cache-dir pip wheel setuptools \
  && echo "**** install mopidy extensions ****" \
  && pip install --no-cache-dir --upgrade \
-    # Mopidy-Bandcamp \
-    # Mopidy-Beets \
-    # Mopidy-InternetArchive \
+    Mopidy-Bandcamp \
+    Mopidy-Beets \
+    Mopidy-InternetArchive \
     Mopidy-Iris \
-    # Mopidy-Jellyfin \
+    Mopidy-Jellyfin \
     Mopidy-Local \
     Mopidy-MPD \
-    # Mopidy-Podcast \
-    # Mopidy-Scrobbler \
-    # Mopidy-SomaFM \
-    # Mopidy-Subidy \
-    # Mopidy-Tidal \
-    # Mopidy-TuneIn \
+    Mopidy-Podcast \
+    Mopidy-Scrobbler \
+    Mopidy-SomaFM \
+    Mopidy-Subidy \
+    Mopidy-Tidal \
+    Mopidy-TuneIn \
     Mopidy==${MOPIDY_RELEASE} \
     PyGObject \
     dbus-python \
@@ -65,9 +68,9 @@ RUN --mount=type=cache,target=/root/.cache/pip \
   && echo "**** cleanup ****" \
   && rm -rf \
     /tmp/*
-# copy defaults & s6-overlay stuff
 
 ARG RECONFIGURED=false
+# copy defaults & s6-overlay stuff
 COPY root/ /
 
 # ports ###########################################################################################

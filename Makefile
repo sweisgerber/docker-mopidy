@@ -1,12 +1,12 @@
 MAINTAINER=mcgr0g
-ASSEMBLY_NAME=mopidy-ams
+ASSEMBLY_NAME=docker-mopidy
 IMG_NAME=$(MAINTAINER)/$(ASSEMBLY_NAME)
 BUILD_DATE:=$(shell date '+%Y-%m-%d')
 # VERSIONS ---------------------------------------------------------------------
 # include .versions
 # export
 ASSEMBLY_VER=0.1.3
-MOPIDY_VERSION=3.4
+MOPIDY_VERSION=3.4.1
 BUILD_ALPINE = Dockerfile
 BUILD_DEBIAN = Dockerfile.debian
 # BUILD FLAGS -----------------------------------------------------------------
@@ -25,7 +25,7 @@ BFLAGS=$(B_BASE) $(B_SYS) $(B_END)
 BUILD_FAST=$(BFLAGS)   --progress=plain .
 BUILD_FULL=$(BFLAGS)   --progress=plain --no-cache .
 UPGRAGE_PKGS=$(BFLAGS) --build-arg UPGRADE=true .
-UPDATE_PKGS=$(BFLAGS)  --build-arg UPDATE=true .
+UPDATE_PKGS=$(BFLAGS)  --progress=plain --build-arg UPDATE=true .
 RECONF=$(BFLAGS)       --progress=plain --build-arg RECONFIGURED=true .
 
 # IMAGE -----------------------------------------------------------------------
@@ -47,7 +47,6 @@ reconf:
 
 weight:
 	docker images $(IMG_NAME):$(ASSEMBLY_VER) \
-	-f "label=org.opencontainers.image.version=$(ASSEMBLY_VER)" \
 	--format "table {{.ID}}\t{{.Repository}}\t{{.Tag}}\t{{.CreatedAt}}\t{{.Size}}"
 	
 
@@ -91,25 +90,13 @@ RUNBASE=docker run --rm --name $(ASSEMBLY_NAME) \
 RUNEND=-t $(IMG_NAME):$(ASSEMBLY_VER)
 
 RUN=$(RUNBASE) $(RUNEND)
-RUN_V=$(RUNBASE) -e VERBOSE="-v" $(RUNEND)
-RUN_VV=$(RUNBASE) -e VERBOSE="-vv" $(RUNEND)
-RUN_VVV=$(RUNBASE) -e VERBOSE="-vvv" $(RUNEND)
 
 # CONTAINER -------------------------------------------------------------------
 volumes:
-	- mkdir ${PWD}/cache && mkdir ${PWD}/config
+	- mkdir ${PWD}/data && mkdir ${PWD}/config
 
 run:
 	$(RUN)
-
-show: clear volumes
-	$(RUN_V)
-
-debug: clear volumes
-	$(RUN_VV)
-
-godeye: clear volumes
-	$(RUN_VVV)
 
 flop:
 	docker exec -it $(ASSEMBLY_NAME) /bin/bash
@@ -117,6 +104,3 @@ flop:
 clear:
 	rm -rf data/
 	rm -rf config/
-
-logs:
-	docker logs $(ASSEMBLY_NAME) | grep -1 "library\|refresh"
