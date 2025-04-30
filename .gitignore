@@ -1,2 +1,7 @@
 .idea
+.vscode
 docker-compose.yml
+media
+cache
+data
+config

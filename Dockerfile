@@ -10,7 +10,7 @@ LABEL maintainer="sweisgerber"
 #
 # Alpine Mopidy install along with some extensions #################################################
 #
-RUN set -ex \
+RUN --mount=type=cache,target=/var/cache/apk \
   echo "**** setup apk testing mirror ****" \
   && echo "@testing https://nl.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories \
   && cat /etc/apk/repositories \
@@ -34,25 +34,26 @@ RUN set -ex \
     python3-dev \
     py3-pip \
     py3-virtualenv \
-    sudo
-RUN python3 -m venv /lsiopy \
+    sudo \
+    git
+RUN --mount=type=cache,target=/root/.cache/pip \
+  python3 -m venv /lsiopy \
  && pip install -U --no-cache-dir pip wheel setuptools \
  && echo "**** install mopidy extensions ****" \
  && pip install --no-cache-dir --upgrade \
-    Mopidy-Bandcamp \
-    Mopidy-Beets \
-    Mopidy-InternetArchive \
+    # Mopidy-Bandcamp \
+    # Mopidy-Beets \
+    # Mopidy-InternetArchive \
     Mopidy-Iris \
-    Mopidy-Jellyfin \
+    # Mopidy-Jellyfin \
     Mopidy-Local \
     Mopidy-MPD \
-    Mopidy-Podcast \
-    Mopidy-Scrobbler \
-    Mopidy-SomaFM \
-    Mopidy-Subidy \
-    Mopidy-Tidal \
-    Mopidy-TuneIn \
-    Mopidy-YTMusic \
+    # Mopidy-Podcast \
+    # Mopidy-Scrobbler \
+    # Mopidy-SomaFM \
+    # Mopidy-Subidy \
+    # Mopidy-Tidal \
+    # Mopidy-TuneIn \
     Mopidy==${MOPIDY_RELEASE} \
     PyGObject \
     dbus-python \
@@ -65,6 +66,8 @@ RUN python3 -m venv /lsiopy \
   && rm -rf \
     /tmp/*
 # copy defaults & s6-overlay stuff
+
+ARG RECONFIGURED=false
 COPY root/ /
 
 # ports ###########################################################################################
