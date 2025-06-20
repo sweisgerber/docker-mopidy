@@ -29,6 +29,7 @@ RUN set -ex \
     gst-plugins-base \
     gst-plugins-good \
     gst-plugins-ugly \
+    gst-vaapi \
     libxml2 \
     python3 \
     python3-dev \
