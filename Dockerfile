@@ -39,6 +39,7 @@ RUN python3 -m venv /lsiopy \
  && pip install -U --no-cache-dir pip wheel setuptools \
  && echo "**** install mopidy extensions ****" \
  && pip install --no-cache-dir --upgrade \
+    setuptools==82 \
     Mopidy-Bandcamp \
     Mopidy-Beets \
     Mopidy-InternetArchive \
