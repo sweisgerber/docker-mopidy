@@ -1,4 +1,4 @@
-name: Build & Push Docker Iamge
+name: Build & Push Docker Image
 
 on:
   schedule:
