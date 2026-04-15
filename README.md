@@ -41,7 +41,7 @@ I strongly advice to use docker-compose, as using a docker commandline is quite 
 An example can get found [in the repository](./docker-compose.example.yml) which is mostly pre-configured, besides a few vars.
 
 ```yaml
-version: "3"
+name: mopidy
 services:
   mopidy:
     image: docker.io/sweisgerber/mopidy:alpine

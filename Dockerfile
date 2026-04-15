@@ -1,4 +1,4 @@
-FROM ghcr.io/linuxserver/baseimage-alpine:edge
+FROM ghcr.io/linuxserver/baseimage-alpine:3.23
 
 # set version label
 ARG BUILD_DATE
@@ -29,7 +29,6 @@ RUN set -ex \
     gst-plugins-base \
     gst-plugins-good \
     gst-plugins-ugly \
-    gst-vaapi \
     libxml2 \
     python3 \
     python3-dev \
